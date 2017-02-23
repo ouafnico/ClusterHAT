@@ -21,7 +21,6 @@ error(){
 	echo " $0 <action> [<device>] [<device>]"
 	echo " action = on / off"
 	echo " device = all / p1 / p2 / p3 / p4"
-	echo " If device is missing the action will be performed on all devices."
 	echo
 	echo "Examples:"
 	echo "$0 on p1 p3 # Turns on P1 and P3"
