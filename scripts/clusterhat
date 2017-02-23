@@ -7,3 +7,70 @@
 # Version 1.0 / 02/23/2017
 #
 
+# VARIABLES
+
+GPIO_BLUE=21
+GPIO_P1=22
+GPIO_P2=23
+GPIO_P3=24
+GPIO_P4=25
+
+error(){
+	echo "Please use following arguments:"
+	echo "Usage:"
+	echo " $0 <action> [<device>] [<device>]"
+	echo " action = on / off"
+	echo " device = all / p1 / p2 / p3 / p4"
+	echo " If device is missing the action will be performed on all devices."
+	echo
+	echo "Examples:"
+	echo "$0 on p1 p3 # Turns on P1 and P3"
+	echo "$0 off all # Turns off P1-4"
+	echo
+	exit
+}
+
+gpiow(){
+	gpio write $GPIO_BLUE 1
+	sleep 1
+        gpio write $1 $2
+	gpio write $GPIO_BLUE 0
+}
+
+# Starting script here
+
+if [ $# -eq 0 ]; then
+	error
+fi
+
+if [[ $1 == on ]]; then
+	STATE=1
+elif [[ $1 == off ]]; then
+	STATE=0
+else
+	error
+fi
+
+if [[ $@ == *"all"* ]]; then
+	echo "Turning $1 all..."
+	gpiow $GPIO_P1 $STATE
+	gpiow $GPIO_P2 $STATE
+	gpiow $GPIO_P3 $STATE
+	gpiow $GPIO_P4 $STATE
+fi
+if [[ $@ == *"p1"* ]]; then
+	echo "Turning $1 P1"
+	gpiow $GPIO_P1 $STATE
+fi
+if [[ $@ == *"p2"* ]]; then
+	echo "Turning $1 P2"
+	gpiow $GPIO_P2 $STATE
+fi
+if [[ $@ == *"p3"* ]]; then
+	echo "Turning $1 P3"
+	gpiow $GPIO_P3 $STATE
+fi
+if [[ $@ == *"p4"* ]]; then
+	echo "Turning $1 P4"
+	gpiow $GPIO_P4 $STATE
+fi
