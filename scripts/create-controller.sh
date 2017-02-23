@@ -69,7 +69,6 @@ main(){
         fi
 	echo -e "\033[0;33mConfiguring image [...] \033[0m"
 	cp sources/90-clusterhat.rules ~/mnt/etc/udev/rules.d/ && \
-	mkdir ~/mnt/etc/minicom && \
 	echo -e "pu port\t/dev/ttypi1" > ~/mnt/etc/minicom/minirc.p1 && \
 	echo -e "pu port\t/dev/ttypi2" > ~/mnt/etc/minicom/minirc.p2 && \
 	echo -e "pu port\t/dev/ttypi3" > ~/mnt/etc/minicom/minirc.p3 && \
