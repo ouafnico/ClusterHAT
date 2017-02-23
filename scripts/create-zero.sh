@@ -60,7 +60,7 @@ main(){
                 echo -e "\033[0;32mMounting partitions [DONE] \033[0m"
         fi
 	MAC=`expr 10 + $2`
-	echo -n "dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait g_cdc.host_addr=00:22:82:ff:fe:$MAC g_cdc.dev_addr=00:22:82:ff:ff:$MAC console=ttyGS0 modules-load=dwc2,g_cdc" > ~/mnt/boot/cmdline.txt && sed -i "s#^127.0.1.1.*#127.0.1.1\tp$2#g" ~/mnt/etc/hosts && echo "dtoverlay=dwc2" >> ~/mnt/boot/config.txt && echo "P$2" > ~/mnt/etc/hostname && cp sources/interfaces.p ~/mnt/etc/network/interfaces && echo "SUBSYSTEM=="net", ATTR{address}=="00:22:82:ff:fe:$MAC", NAME="ethpi$2"" > ~/mnt/etc/udev/rules.d/90-clusterhat.rules
+	echo -n "dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait g_cdc.host_addr=00:22:82:ff:fe:$MAC g_cdc.dev_addr=00:22:82:ff:ff:$MAC console=ttyGS0 modules-load=dwc2,g_cdc" > ~/mnt/boot/cmdline.txt && sed -i "s#^127.0.1.1.*#127.0.1.1\tp$2#g" ~/mnt/etc/hosts && echo "dtoverlay=dwc2" >> ~/mnt/boot/config.txt && echo "P$2" > ~/mnt/etc/hostname && cp sources/interfaces.p ~/mnt/etc/network/interfaces
 	echo -e "\033[0;33mConfiguring image [...] \033[0m"
 	if [ $? -ne 0 ]; then
                 echo -e "\033[0;31mConfiguring image [FAIL]\033[0m"
