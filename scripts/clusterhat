@@ -30,13 +30,11 @@ error(){
 }
 
 gpiow(){
-	gpio write $GPIO_BLUE 1
-	sleep 1
         gpio write $1 $2
-	gpio write $GPIO_BLUE 0
+	sleep 2
 }
 
-# Starting script here
+# STARTING HERE
 
 if [ $# -eq 0 ]; then
 	error
@@ -51,25 +49,40 @@ else
 fi
 
 if [[ $@ == *"all"* ]]; then
-	echo "Turning $1 all..."
+	echo -e "\033[0;33mTurning $1 All [...] \033[0m"
+	gpio write $GPIO_BLUE 1
 	gpiow $GPIO_P1 $STATE
 	gpiow $GPIO_P2 $STATE
 	gpiow $GPIO_P3 $STATE
 	gpiow $GPIO_P4 $STATE
+	gpio write $GPIO_BLUE 0
+	echo -e "\033[0;32mTurning $1 All [DONE] \033[0m"
 fi
 if [[ $@ == *"p1"* ]]; then
-	echo "Turning $1 P1"
+        echo -e "\033[0;33mTurning $1 P1 [...] \033[0m"
+        gpio write $GPIO_BLUE 1
 	gpiow $GPIO_P1 $STATE
+        gpio write $GPIO_BLUE 0
+        echo -e "\033[0;32mTurning $1 P1 [DONE] \033[0m"
 fi
 if [[ $@ == *"p2"* ]]; then
-	echo "Turning $1 P2"
+        echo -e "\033[0;33mTurning $1 P2 [...] \033[0m"
+        gpio write $GPIO_BLUE 1
 	gpiow $GPIO_P2 $STATE
+        gpio write $GPIO_BLUE 0
+        echo -e "\033[0;32mTurning $1 P2 [DONE] \033[0m"
 fi
 if [[ $@ == *"p3"* ]]; then
-	echo "Turning $1 P3"
+        echo -e "\033[0;33mTurning $1 P3 [...] \033[0m"
+        gpio write $GPIO_BLUE 1
 	gpiow $GPIO_P3 $STATE
+        gpio write $GPIO_BLUE 0
+        echo -e "\033[0;32mTurning $1 P3 [DONE] \033[0m"
 fi
 if [[ $@ == *"p4"* ]]; then
-	echo "Turning $1 P4"
+        echo -e "\033[0;33mTurning $1 P4 [...] \033[0m"
+        gpio write $GPIO_BLUE 1
 	gpiow $GPIO_P4 $STATE
+        gpio write $GPIO_BLUE 0
+        echo -e "\033[0;32mTurning $1 P4 [DONE] \033[0m"
 fi
