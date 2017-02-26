@@ -1,0 +1,11 @@
+[Unit]
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/sbin/clusterhat on %i
+ExecStop=/sbin/clusterhat off %i
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
