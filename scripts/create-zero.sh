@@ -64,7 +64,8 @@ main(){
 	sed -i "s#^127.0.1.1.*#127.0.1.1\tp$2#g" ~/mnt/etc/hosts && \
 	echo "dtoverlay=dwc2" >> ~/mnt/boot/config.txt && \
 	echo "P$2" > ~/mnt/etc/hostname && \
-	cp sources/interfaces.p ~/mnt/etc/network/interfaces
+	cp sources/interfaces.p ~/mnt/etc/network/interfaces && \
+	echo -e "\nauto usb0:0\niface usb0:0 inet static\naddress 10.0.0.$MAC\nnetmask 255.255.255.0" >> ~/mnt/etc/network/interfaces
 	echo -e "\033[0;33mConfiguring image [...] \033[0m"
 	if [ $? -ne 0 ]; then
                 echo -e "\033[0;31mConfiguring image [FAIL]\033[0m"
