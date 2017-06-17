@@ -85,7 +85,7 @@ main(){
 	echo -e "\nauto ethpi4\nallow-hotplug ethpi4\niface ethpi4 inet manual\npre-up brctl addif br0 ethpi4\nup ifconfig ethpi4 up" >> ~/mnt/etc/network/interfaces && \
 	cp clusterhat ~/mnt/sbin/clusterhat && \
 	chmod a+x ~/mnt/sbin/clusterhat && \
-	chroot ~/mnt rm -f mnt/etc/ssh/*key* && \
+	rm -f ~/mnt/etc/ssh/*key* && \
 	chroot ~/mnt apt-get -qy autoremove --purge && \
 	chroot ~/mnt apt-get clean
 	if [ $? -ne 0 ]; then
